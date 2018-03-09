@@ -1,4 +1,4 @@
-package bot;
+package main;
 
 public class OSCheck {
 	private static String OS = System.getProperty("os.name").toLowerCase();

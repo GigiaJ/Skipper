@@ -1,6 +1,6 @@
-package bot;
+package main;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
@@ -21,7 +21,7 @@ import bot.settings.SettingSaver;
 import commands.general.help.HelpGUI;
 import macro.MacroManager;
 
-public class SystemTrayHandler implements ItemListener, ActionListener {
+public class SystemTrayManager implements ItemListener, ActionListener {
 	public static boolean systemTrayCheck() {
 		if (!SystemTray.isSupported()) {
 			return false;
@@ -43,7 +43,7 @@ public class SystemTrayHandler implements ItemListener, ActionListener {
 	static BufferedImage img = null;
 	static TrayIcon trayIcon = null;
 
-	public SystemTrayHandler() {
+	public SystemTrayManager() {
 		if (OSCheck.isMac() == false) {
 			if (systemTrayCheck() == true) {
 				cb1.addItemListener(this);
@@ -76,7 +76,7 @@ public class SystemTrayHandler implements ItemListener, ActionListener {
 				MenuItem embColor = new MenuItem("Embedded Message Color:" + settings.getEmbedColor());
 
 				if (initial == true) {
-					listener = new SystemTrayHandler();
+					listener = new SystemTrayManager();
 					final SystemTray tray = SystemTray.getSystemTray();
 					stateChange();
 					// Add components to pop-up menu

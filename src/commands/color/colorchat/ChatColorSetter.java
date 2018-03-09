@@ -19,8 +19,8 @@ public class ChatColorSetter {
 	private static Pattern toFind = Pattern.compile("([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})");
 
 	public static Color applyColor() throws Exception {
-		if (bot.Bot.settings.getColorChatColor() != null) {
-			String hex = bot.Bot.settings.getColorChatColor();
+		if (main.Main.settings.getColorChatColor() != null) {
+			String hex = main.Main.settings.getColorChatColor();
 			hexColor = hex;
 			int r = Color.decode(hex).getRed();
 			int g = Color.decode(hex).getGreen();
@@ -76,7 +76,7 @@ public class ChatColorSetter {
 			embColor = color;
 			embContent = "Color successfully set to " + hex + ".";
 
-			bot.Bot.settings = bot.Bot.settings.debuild().setColorChatColor(hex).build();
+			main.Main.settings = main.Main.settings.debuild().setColorChatColor(hex).build();
 		} else {
 			embContent = "Invalid color code. Please try again.";
 		}

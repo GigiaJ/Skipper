@@ -1,6 +1,6 @@
 package commands.color.colorchat;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import commands.Command;
 import commands.CommandBuilder;

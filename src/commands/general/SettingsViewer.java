@@ -1,15 +1,15 @@
 package commands.general;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.awt.Color;
 
-import bot.VersionEnum;
 import commands.Command;
 import commands.CommandBuilder;
 import commands.CommandType;
 import commands.color.ColorSetter;
 import commands.color.colorchat.ChatColorSetter;
+import main.VersionEnum;
 import messages.EmbedMessage;
 import messages.EmbedData;
 import net.dv8tion.jda.core.entities.Message;

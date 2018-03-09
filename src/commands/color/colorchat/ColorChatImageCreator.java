@@ -35,7 +35,7 @@ public class ColorChatImageCreator {
 
 	public static void textToImage(String text, String font, Integer size) throws Exception {
 		fontSize = size;
-		file = bot.Bot.imageFile;
+		file = main.Main.imageFile;
 		File.createTempFile("Text", "png");
 		file.deleteOnExit();
 		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);

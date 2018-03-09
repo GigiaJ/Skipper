@@ -1,9 +1,9 @@
 package handler;
 
-import static bot.Bot.settings;
 import static commands.CommandList.cmdNext;
 import static commands.CommandList.cmdBack;
 import static commands.CommandList.cmdSign;
+import static main.Main.settings;
 
 import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
@@ -119,7 +119,7 @@ public class CommandHandler extends MessageInfo {
 				if (commandSend == null) {
 					message.delete().submit();
 				}
-				bot.SystemTrayHandler.executeTray(false);
+				main.SystemTrayManager.executeTray(false);
 				bot.settings.SettingSaver.saveSettings();
 			}
 		}

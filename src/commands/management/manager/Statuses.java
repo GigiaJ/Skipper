@@ -1,6 +1,6 @@
 package commands.management.manager;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.time.Instant;
 import java.util.ArrayList;

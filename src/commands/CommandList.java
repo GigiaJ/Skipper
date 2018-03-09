@@ -1,6 +1,7 @@
 package commands;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
+
 import java.util.ArrayList;
 
 public class CommandList {

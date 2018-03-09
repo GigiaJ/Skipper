@@ -1,6 +1,6 @@
 package bot.settings.settingLoaders;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ public class SettingsLoader implements ISetting {
 
 	public static void loadSettings() throws FileNotFoundException, IOException {
 		String line = "";
-		try (InputStream fis = new FileInputStream(bot.Bot.settingsFile);
+		try (InputStream fis = new FileInputStream(main.Main.settingsFile);
 				InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
 				BufferedReader br = new BufferedReader(isr);) {
 			while ((line = br.readLine()) != null) {

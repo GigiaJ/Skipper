@@ -1,8 +1,8 @@
 package messages.messageEffects;
 
-import static bot.Bot.settings;
 import static eventInfo.MessageInfo.channel;
 import static eventInfo.MessageInfo.message;
+import static main.Main.settings;
 
 import commands.color.colorchat.ColorChatImageCreator;
 import messages.EmbedData;
@@ -35,7 +35,7 @@ public class ColorChatEffect extends MessageEffects {
 
 			if (!settings.getAuthorEmbedStatus() && !settings.getEmbedMessageStatus() && EmbedData.imageUrl == null) {
 				message.delete().complete();
-				channel.sendFile(bot.Bot.imageFile).complete();
+				channel.sendFile(main.Main.imageFile).complete();
 			}
 		}
 	}
