@@ -183,6 +183,14 @@ public class CommandUpdater extends CommandList {
 		listOfCommands.add(cmdCheckMutes);
 //
 		
+//		Ban
+		cmdPBan = commands.management.ban.PermanentBan.updateCommand(cmdSign, adminCmdSign);
+		listOfCommands.add(cmdPBan);
+		
+		cmdTempBan = commands.management.ban.TemporaryBan.updateCommand(cmdSign, adminCmdSign);
+		listOfCommands.add(cmdTempBan);
+//		
+
 //		NicknameLock
 		cmdNameLockSet = commands.management.nicknameLock.NicknameLockSet.updateCommand(cmdSign, adminCmdSign);
 		listOfCommands.add(cmdNameLockSet);

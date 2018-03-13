@@ -12,6 +12,7 @@ import eventInfo.ChannelPermissionInfo;
 import eventInfo.GuildMemberNickChangeInfo;
 import eventInfo.MemberJoinInfo;
 import eventInfo.MessageInfo;
+import handler.UnbanHandler;
 
 public class Main {
 	public static File baseFolder;
@@ -30,7 +31,7 @@ public class Main {
 		try {
 			jda = new JDABuilder(AccountType.CLIENT).setToken(token).addEventListener(new MessageInfo())
 					.addEventListener(new MemberJoinInfo()).addEventListener(new GuildMemberNickChangeInfo())
-					.addEventListener(new ChannelPermissionInfo()).buildAsync();
+					.addEventListener(new ChannelPermissionInfo()).addEventListener(new UnbanHandler()).buildAsync();
 		} catch (LoginException e) {
 			 JOptionPane.showMessageDialog(null, e.toString(), "Error",
                      JOptionPane.ERROR_MESSAGE);

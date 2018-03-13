@@ -23,7 +23,7 @@ public class ChannelPermissionInfo extends ListenerAdapter {
 		} catch (
 
 		NullPointerException ignore) {
-			// ignore is a message that has been deleting and the library being used has no
+			// ignore is a message that has been deleted and the library being used has no
 			// method of acting upon the deleted message in order to handle this exception
 			// Any attempt to handle this would constantly be invoked upon message send or
 			// receive

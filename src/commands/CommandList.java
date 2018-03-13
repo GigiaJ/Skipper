@@ -38,6 +38,8 @@ public class CommandList {
 			cmdSpamFilterDelay = null,
 			// Lengthfilter
 			cmdLengthFilterGuild = null, cmdLengthFilterChannel = null, cmdLengthFilterCheck = null,
+			// Ban 
+			cmdPBan = null, cmdTempBan = null,
 			// NicknameLock
 			cmdNameLockSet = null, cmdNameLockUnset = null, cmdNameLockUnsetAll = null, cmdNameLockCheck = null,
 			// NSFW
