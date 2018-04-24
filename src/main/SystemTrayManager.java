@@ -55,10 +55,11 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 				help.addActionListener(this);
 				aboutItem.addActionListener(this);
 				try {
-					img = ImageIO.read(getClass().getResource("/images/SkipperLogo.png"));
+					img = ImageIO.read(getClass().getResource("/images/SkipperTrayLogo.png"));
+					trayIcon = new TrayIcon(img);
 				} catch (IOException e1) {
 				}
-				trayIcon = new TrayIcon(img);
+				
 			}
 		}
 	}

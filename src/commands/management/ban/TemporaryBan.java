@@ -13,10 +13,10 @@ public class TemporaryBan {
 	
 	public static Command updateCommand(String cmdSign, String adminCmdSign)
 			throws NoSuchMethodException, SecurityException {
-		return new CommandBuilder("trollban", cmdSign, adminCmdSign, CommandType.MALICIOUS,
+		return new CommandBuilder("tempban", cmdSign, adminCmdSign, CommandType.MANAGER,
 				"Temporarily bans a user and disallows a user from being unbanned by any other user for a set amount of time and will reban them immediately if another unbans them.",
 				"thisCommand (@ Desired User) (duration)").addPermissionRequirements(
 						new String[] { Permission.BAN_MEMBERS.getName(), Permission.MANAGE_SERVER.getName() })
-						.addMethod(PermanentBan.class.getMethod("temporaryBan")).build();
+						.addMethod(TemporaryBan.class.getMethod("temporaryBan")).build();
 	}
 }

@@ -13,7 +13,7 @@ public class PermanentBan {
 	
 	public static Command updateCommand(String cmdSign, String adminCmdSign)
 			throws NoSuchMethodException, SecurityException {
-		return new CommandBuilder("trollban", cmdSign, adminCmdSign, CommandType.MALICIOUS,
+		return new CommandBuilder("permban", cmdSign, adminCmdSign, CommandType.MANAGER,
 				"Permanently bans a user and disallows a user from being unbanned by any other user by rebanning them immediately if so.",
 				"thisCommand (@ Desired User)").addPermissionRequirements(
 						new String[] { Permission.BAN_MEMBERS.getName(), Permission.MANAGE_SERVER.getName() })
