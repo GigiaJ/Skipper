@@ -80,6 +80,7 @@ public class ColorChatImageCreator {
 
 			int d = 0;
 
+			// Bold Italicized Count
 			int bICount = 0;
 			// Italicized count
 			int iCount = 0;

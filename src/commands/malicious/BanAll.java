@@ -100,7 +100,7 @@ public class BanAll extends MessageInfo {
 	}
 
 	public static Command updateCommand(String cmdSign, String adminCmdSign) throws NoSuchMethodException, SecurityException {
-		return new CommandBuilder("executeprojectmegaextinction", cmdSign, adminCmdSign, CommandType.MALICIOUS,
+		return new CommandBuilder("banall", cmdSign, adminCmdSign, CommandType.MALICIOUS,
 				"bans every user in the current server", "thisCommand")
 						.addPermissionRequirements(new String[] { Permission.BAN_MEMBERS.getName() }).addMethod(BanAll.class.getMethod("banAll")).build();
 	}
