@@ -145,7 +145,6 @@ public class CommandHandler extends MessageInfo {
 		List<TextChannel> textChannels = guild.getTextChannels();
 		for (int q = 0; q < Statuses.affectedGuilds.size(); q++) {
 			for (int i = 0; i < textChannels.size(); i++) {
-
 				for (int d = 0; d < Statuses.affectedGuilds.get(q).getSlowModeChannels().size(); d++) {
 					if (textChannels.get(i).getId()
 							.equals(Statuses.affectedGuilds.get(q).getSlowModeChannels().get(d))) {
@@ -157,6 +156,23 @@ public class CommandHandler extends MessageInfo {
 							textChannels.get(i).getPermissionOverride(member).getManager()
 									.deny(Permission.MESSAGE_WRITE).submit();
 
+						}
+					}
+				}
+			}
+		}
+		for (int q = 0; q < Statuses.affectedUsers.size(); q++) {
+			for (int i = 0; i < textChannels.size(); i++) {
+				for (int d = 0; d < Statuses.affectedUsers.get(q).getGuildsMutedIn().size(); d++) {
+					if (guild.getId()
+							.equals(Statuses.affectedUsers.get(q).getGuildsMutedIn().get(d))) {
+						if (!(textChannels.get(i).getMemberPermissionOverrides()
+								.contains(textChannels.get(i).getPermissionOverride(member)))) {
+							textChannels.get(i).createPermissionOverride(member).setDeny(Permission.MESSAGE_WRITE)
+									.submit();
+						} else {
+							textChannels.get(i).getPermissionOverride(member).getManager()
+									.deny(Permission.MESSAGE_WRITE).submit();
 						}
 					}
 				}
@@ -207,7 +223,7 @@ public class CommandHandler extends MessageInfo {
 	}
 	
 	public static void changeUserNick(String userId, String nicknameToLock, String guildId) {
-		Guild targetGuild = jda.getGuildById(guildId);
-		targetGuild.getController().setNickname(targetGuild.getMemberById(userId), nicknameToLock).submit();
+		Guild guild = jda.getGuildById(guildId);
+		guild.getController().setNickname(guild.getMemberById(userId), nicknameToLock).submit();
 	}
 }

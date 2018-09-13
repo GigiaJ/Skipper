@@ -121,7 +121,7 @@ public class Statuses {
 		for (int i = 0; i < affectedUsers.size(); i++) {
 			if (!affectedUsers.get(i).getGuildsMutedIn().isEmpty()) {
 				for (int q = 0; q < affectedUsers.get(i).getGuildsMutedIn().size(); q++) {
-					
+					CommandHandler.disableChatFor(affectedUsers.get(i).getUserId(), affectedUsers.get(i).getGuildsMutedIn().get(q));
 				}
 				mutes = true;
 				enforceMute = true;
