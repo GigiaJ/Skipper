@@ -12,6 +12,7 @@ import java.util.List;
 import commands.color.ColorSetter;
 import commands.color.colorchat.ChatColorSetter;
 import commands.general.pageChange.Pagenator;
+import commands.management.manager.Statuses;
 import eventInfo.MessageInfo;
 import macro.Macros;
 import messages.EmbedData;
@@ -22,6 +23,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
+import commands.RetrieveUsers;
 
 public class CommandHandler extends MessageInfo {
 	public static Color embedMessagingColor;
@@ -66,14 +68,16 @@ public class CommandHandler extends MessageInfo {
 	}
 
 	public static void activeCommands() {
-		
+
 		if (!author.equals(botUser)) {
 			if (commands.management.spamFilter.EnforceSpamFilter.activeCommand() == true) {
 				message.delete().submit();
 			}
 
 			if (commands.management.muter.EnforceMutes.activeCommand() == true) {
-				message.delete().submit();
+				if (RetrieveUsers.listMembersHigherRanked().contains(message.getMember())) {
+					message.delete().submit();
+				}
 			}
 
 			if (commands.management.lengthFilter.EnforceLengthFilter.activeCommand() == true) {
@@ -81,9 +85,19 @@ public class CommandHandler extends MessageInfo {
 			}
 
 			if (commands.management.slowMode.EnforceSlowModes.activeCommand() == true) {
-				message.delete().submit();
+				for (int i = 0; i < Statuses.affectedUsers.size(); i++) {
+					if (Statuses.affectedUsers.get(i).getUserId().equals(message.getAuthor().getId())) {
+						for (int t = 0; t < Statuses.affectedUsers.get(i).getGuildsSlowModeIn().size(); t++) {
+							if (Statuses.affectedUsers.get(i).getGuildsSlowModeIn().get(t).getGuildId()
+									.equals(message.getGuild().getId())) {
+								commands.management.slowMode.EnforceSlowModes.slowModeStarted(
+										Statuses.affectedUsers.get(i),
+										Statuses.affectedUsers.get(i).getGuildsSlowModeIn().get(t));
+							}
+						}
+					}
+				}
 			}
-
 		}
 	}
 
@@ -109,7 +123,7 @@ public class CommandHandler extends MessageInfo {
 						e.printStackTrace();
 					}
 				}
-				
+
 				if ((commandSend != null) && (commandMessageIdToEdit != null)) {
 					channel.editMessageById(commandMessageIdToEdit, commandSend).submit();
 				}
@@ -124,23 +138,32 @@ public class CommandHandler extends MessageInfo {
 			}
 		}
 	}
-	
+
 	public static void disableChatFor(String userId, String guildId) {
 		Guild guild = jda.getGuildById(guildId);
 		Member member = guild.getMemberById(userId);
 		List<TextChannel> textChannels = guild.getTextChannels();
-		for (int i = 0; i < textChannels.size(); i++) {
-			if (!(textChannels.get(i).getMemberPermissionOverrides()
-					.contains(textChannels.get(i).getPermissionOverride(member)))) {
-				textChannels.get(i).createPermissionOverride(member).setDeny(Permission.MESSAGE_WRITE).complete();
-			} else {
-				textChannels.get(i).getPermissionOverride(member).getManager().deny(Permission.MESSAGE_WRITE)
-						.complete();
+		for (int q = 0; q < Statuses.affectedGuilds.size(); q++) {
+			for (int i = 0; i < textChannels.size(); i++) {
 
+				for (int d = 0; d < Statuses.affectedGuilds.get(q).getSlowModeChannels().size(); d++) {
+					if (textChannels.get(i).getId()
+							.equals(Statuses.affectedGuilds.get(q).getSlowModeChannels().get(d))) {
+						if (!(textChannels.get(i).getMemberPermissionOverrides()
+								.contains(textChannels.get(i).getPermissionOverride(member)))) {
+							textChannels.get(i).createPermissionOverride(member).setDeny(Permission.MESSAGE_WRITE)
+									.submit();
+						} else {
+							textChannels.get(i).getPermissionOverride(member).getManager()
+									.deny(Permission.MESSAGE_WRITE).submit();
+
+						}
+					}
+				}
 			}
 		}
 	}
-	
+
 	private static void checkForMacros() {
 		for (int i = 0; i < Macros.macros.size(); i++) {
 			if (message.getContentRaw().startsWith(cmdSign + Macros.macros.get(i).getName())) {
@@ -155,10 +178,9 @@ public class CommandHandler extends MessageInfo {
 		for (int i = 0; i < textChannels.size(); i++) {
 			if (!(textChannels.get(i).getMemberPermissionOverrides()
 					.contains(textChannels.get(i).getPermissionOverride(member)))) {
-				textChannels.get(i).createPermissionOverride(member).setDeny(Permission.MESSAGE_WRITE).complete();
+				textChannels.get(i).createPermissionOverride(member).setDeny(Permission.MESSAGE_WRITE).submit();
 			} else {
-				textChannels.get(i).getPermissionOverride(member).getManager().deny(Permission.MESSAGE_WRITE)
-						.complete();
+				textChannels.get(i).getPermissionOverride(member).getManager().deny(Permission.MESSAGE_WRITE).submit();
 
 			}
 		}
@@ -172,9 +194,9 @@ public class CommandHandler extends MessageInfo {
 			if (textChannels.get(i).getMemberPermissionOverrides()
 					.contains(textChannels.get(i).getPermissionOverride(member))) {
 				if (1 < textChannels.get(i).getPermissionOverride(member).getDenied().size()) {
-					textChannels.get(i).createPermissionOverride(member).setAllow(Permission.MESSAGE_WRITE).complete();
+					textChannels.get(i).createPermissionOverride(member).setAllow(Permission.MESSAGE_WRITE).submit();
 				} else {
-					textChannels.get(i).getPermissionOverride(member).delete().complete();
+					textChannels.get(i).getPermissionOverride(member).delete().submit();
 				}
 			}
 		}
@@ -182,5 +204,10 @@ public class CommandHandler extends MessageInfo {
 
 	public static void changeUserNick(String userId, String nicknameToLock) {
 		guild.getController().setNickname(guild.getMemberById(userId), nicknameToLock).submit();
+	}
+	
+	public static void changeUserNick(String userId, String nicknameToLock, String guildId) {
+		Guild targetGuild = jda.getGuildById(guildId);
+		targetGuild.getController().setNickname(targetGuild.getMemberById(userId), nicknameToLock).submit();
 	}
 }

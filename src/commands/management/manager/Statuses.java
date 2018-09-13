@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 
 import commands.management.slowMode.SlowModeThreading;
+import handler.CommandHandler;
 
 public class Statuses {
 	public static boolean enforceMute = false;
@@ -119,12 +120,19 @@ public class Statuses {
 		boolean namelocks = false;
 		for (int i = 0; i < affectedUsers.size(); i++) {
 			if (!affectedUsers.get(i).getGuildsMutedIn().isEmpty()) {
+				for (int q = 0; q < affectedUsers.get(i).getGuildsMutedIn().size(); q++) {
+					
+				}
 				mutes = true;
 				enforceMute = true;
 			} else {
 				enforceMute = false;
 			}
 			if (!affectedUsers.get(i).getGuildsNickNameLockIn().isEmpty()) {
+				for (int q = 0; q < affectedUsers.get(i).getGuildsNickNameLockIn().size(); q++) {
+					CommandHandler.changeUserNick(affectedUsers.get(i).getUserId(),
+							affectedUsers.get(i).getNickNames().get(q), affectedUsers.get(i).getGuildsNickNameLockIn().get(q));
+				}
 				namelocks = true;
 				enforceNameLock = true;
 			} else {

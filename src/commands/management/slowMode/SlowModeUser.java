@@ -38,19 +38,29 @@ public class SlowModeUser extends Statuses {
 				slowModeMember = applyExistingMemberStatus(slowModeMember);
 				if (!userId.equals(MessageInfo.botUser.getId())) {
 					if (alreadyAffected(slowModeMember, guildId) == false) {
-						int delay = 0;
+						int delay = 5;
 						int duration = -1;
 						if (filterCommandOut.contains(" ")) {
-							String[] numbers = filterCommandOut.trim().split(" ");
-							if (!numbers[0].trim().isEmpty()) {
-								delay = Integer.valueOf(numbers[0]);
-								if (numbers[1] != null) {
-									duration = Integer.valueOf(numbers[1]);
+							for (int i = 0; i < filterCommandOut.length(); i++) {
+								if (filterCommandOut.charAt(0) == ' ') {
+									filterCommandOut = filterCommandOut.replaceFirst(" ", "");
 								} else {
-									delay = 5;
+									break;
 								}
-							} else {
-								delay = Integer.valueOf(filterCommandOut);
+							}
+							if (!filterCommandOut.isEmpty()) {
+								String[] numbers = filterCommandOut.split(" ");
+
+								if (!numbers[0].isEmpty() || numbers[0] != null) {
+									delay = Integer.valueOf(numbers[0].replaceAll(" ", ""));
+									if (numbers.length > 1) {
+										if (numbers[1] != null || !numbers[1].isEmpty()) {
+											duration = Integer.valueOf(numbers[1].replaceAll(" ", ""));
+										}
+									}
+								} else {
+									delay = Integer.valueOf(filterCommandOut.replaceAll(" ", ""));
+								}
 							}
 						}
 						affectedUsers.remove(slowModeMember);
@@ -58,6 +68,7 @@ public class SlowModeUser extends Statuses {
 						SlowModeThreading slowModeThread = new SlowModeThreading(slowModeMember,
 								new SlowModeData(guildId, delay, duration));
 						Thread t = new Thread(slowModeThread);
+						t.setName(userId);
 						t.start();
 						affectedUsers.add(slowModeMember);
 						enforceSlowMode = true;

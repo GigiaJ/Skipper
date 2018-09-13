@@ -25,18 +25,19 @@ public class Main {
 	protected static String token = "";
 	protected static JDA jda;
 
+	
 	public static void main(String[] args) throws Exception {
+
 		StartUp.startUp();
-		FileLoader.loadFiles();
 		try {
 			jda = new JDABuilder(AccountType.CLIENT).setToken(token).addEventListener(new MessageInfo())
 					.addEventListener(new MemberJoinInfo()).addEventListener(new GuildMemberNickChangeInfo())
-					.addEventListener(new ChannelPermissionInfo()).addEventListener(new UnbanHandler()).buildAsync();
+					.addEventListener(new ChannelPermissionInfo()).addEventListener(new UnbanHandler()).build().awaitReady();
 		} catch (LoginException e) {
 			 JOptionPane.showMessageDialog(null, e.toString(), "Error",
                      JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
-
+		FileLoader.loadFiles();
 	}
 }

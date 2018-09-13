@@ -16,7 +16,7 @@ public class ChannelPermissionInfo extends ListenerAdapter {
 
 	public void onTextChannelUpdatePermissions(TextChannelUpdatePermissionsEvent event) throws NullPointerException {
 		try {
-			membersWithChangedPermissions = event.getMembersWithPermissionChanges();
+			membersWithChangedPermissions = event.getChangedMembers();
 			guild = event.getGuild();
 			channel = event.getChannel();
 			handler.PermissionHandler.handler();
