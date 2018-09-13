@@ -21,7 +21,7 @@ dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:21.0'
-	compile 'net.dv8tion:JDA:3.5.0_334'
+	compile 'net.dv8tion:JDA:3.7.1_418'
 	compile 'org.apache.commons:commons-collections4:4.1'
 	compile 'org.apache.commons:commons-lang3:3.5'
     compile 'com.neovisionaries:nv-websocket-client:2.2'

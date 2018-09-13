@@ -1,22 +1,15 @@
-package commands.malicious;
+package commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
-import commands.Command;
-import commands.CommandBuilder;
-import commands.CommandType;
 import eventInfo.MessageInfo;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 
-public class BanAll extends MessageInfo {
-	
-	public static void banAll() {
-		
+public class RetrieveUsers extends MessageInfo {
+	public static List<Member> listMembersHigherRanked() {
 		List<Role> listOfRoles = guild.getRoles();
 		List<Member> membersAdmin = guild.getMembersWithRoles();
 		List<Member> allMembers = guild.getMembers();
@@ -80,28 +73,14 @@ public class BanAll extends MessageInfo {
 		}
 		i = 0;
 
-		HashSet<Member> listOfMembers = new HashSet<Member>();
-		listOfMembers.addAll(allMembers);
+		List<Member> listOfMembers = new ArrayList<Member>();
 
 		i = 0;
 		while (i < arrayRolesAboveYou.size()) {
-			listOfMembers.removeAll(guild.getMembersWithRoles(arrayRolesAboveYou.get(i)));
+			listOfMembers.addAll(guild.getMembersWithRoles(arrayRolesAboveYou.get(i)));
 			i = i + 1;
 		}
-
-		ArrayList<Member> finalList = new ArrayList<Member>();
-		finalList.addAll(listOfMembers);
-
-		while (finalList.size() > 0) {
-			Member ban = finalList.get(0);
-			guild.getController().ban(ban, 7).submit();
-			finalList.remove(0);
-		}
-	}
-
-	public static Command updateCommand(String cmdSign, String adminCmdSign) throws NoSuchMethodException, SecurityException {
-		return new CommandBuilder("banall", cmdSign, adminCmdSign, CommandType.MALICIOUS,
-				"bans every user in the current server", "thisCommand")
-						.addPermissionRequirements(new String[] { Permission.BAN_MEMBERS.getName() }).addMethod(BanAll.class.getMethod("banAll")).build();
+		
+		return listOfMembers;
 	}
 }

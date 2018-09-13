@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractListModel;
@@ -102,12 +104,6 @@ public class HelpGUI implements HelpInterface {
 		txtrSearch.setBounds(10, 0, 51, 22);
 		headerPanel.add(txtrSearch);
 
-		itemToSearchFor = new JTextField();
-		itemToSearchFor.setFont(new Font("Arial", Font.PLAIN, 12));
-		itemToSearchFor.setBounds(65, 0, 86, 20);
-		headerPanel.add(itemToSearchFor);
-		itemToSearchFor.setColumns(10);
-
 		JSeparator sidePanelHeaderSeperator = new JSeparator();
 		sidePanelHeaderSeperator.setBounds(0, 37, 205, 2);
 		headerPanel.add(sidePanelHeaderSeperator);
@@ -147,6 +143,38 @@ public class HelpGUI implements HelpInterface {
 		JScrollPane sidePanelBody = new JScrollPane();
 		updateSidePanelBody(sidePanelBody, detailsPanelBody, commandsSidePanel, sidePanelHeader, COMMANDS_HEADER_VALUE);
 
+		itemToSearchFor = new JTextField();
+		itemToSearchFor.setFont(new Font("Arial", Font.PLAIN, 12));
+		itemToSearchFor.setBounds(65, 0, 86, 20);
+		headerPanel.add(itemToSearchFor);
+		itemToSearchFor.setColumns(10);
+		
+		itemToSearchFor.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					commandsSidePanel.removeAll();
+					searchForResult(itemToSearchFor.getText(), sidePanelBody, commandsSidePanel, sidePanelHeader,
+							detailsPanelBody, SEARCH_RESULT_HEADER_VALUE);
+					commandsSidePanel.revalidate();
+					commandsSidePanel.repaint();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}			
+		});
+		
 		Button searchButton = new Button("Go");
 		searchButton.setBackground(Color.GRAY);
 		searchButton.setBounds(157, 0, 28, 22);
@@ -375,20 +403,15 @@ public class HelpGUI implements HelpInterface {
 		list.setFont(new Font("Arial", Font.PLAIN, 12));
 		ArrayList<String> matchedResults = new ArrayList<String>();
 		for (int i = 0; i < commands.CommandList.listOfCommands.size(); i++) {
-			if (commands.CommandList.listOfCommands.get(i).getName().contains(searchValue)) {
+			if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getName(), searchValue)) {
 				matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 			}
-			if (commands.CommandList.listOfCommands.get(i).getInfo().contains(searchValue)) {
+			if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getInfo(), searchValue)) {
 				if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
 					matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 				}
 			}
-			if (commands.CommandList.listOfCommands.get(i).getCommand().contains(searchValue)) {
-				if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
-					matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
-				}
-			}
-			if (commands.CommandList.listOfCommands.get(i).getInfo().contains(searchValue)) {
+			if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getCommand(), searchValue)) {
 				if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
 					matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 				}
@@ -460,20 +483,15 @@ public class HelpGUI implements HelpInterface {
 			list.setFont(new Font("Arial", Font.PLAIN, 12));
 			ArrayList<String> matchedResults = new ArrayList<String>();
 			for (int i = 0; i < commands.CommandList.listOfCommands.size(); i++) {
-				if (commands.CommandList.listOfCommands.get(i).getName().contains(lastResult)) {
+				if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getName(), lastResult)) {
 					matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 				}
-				if (commands.CommandList.listOfCommands.get(i).getInfo().contains(lastResult)) {
+				if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getInfo(), lastResult)) {
 					if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
 						matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 					}
 				}
-				if (commands.CommandList.listOfCommands.get(i).getCommand().contains(lastResult)) {
-					if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
-						matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
-					}
-				}
-				if (commands.CommandList.listOfCommands.get(i).getInfo().contains(lastResult)) {
+				if (org.apache.commons.lang3.StringUtils.containsIgnoreCase(commands.CommandList.listOfCommands.get(i).getCommand(), lastResult)) {
 					if (!matchedResults.contains(commands.CommandList.listOfCommands.get(i).getName())) {
 						matchedResults.add(commands.CommandList.listOfCommands.get(i).getName());
 					}

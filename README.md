@@ -1,2 +1,2 @@
 # Skipper
-A discord bot done as my first big Java project. 
+Will hopefully add more info here soon

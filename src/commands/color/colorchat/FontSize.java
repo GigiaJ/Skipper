@@ -1,7 +1,7 @@
 package commands.color.colorchat;
 
-import static bot.Bot.settings;
 import static commands.CommandList.cmdFontSize;
+import static main.Main.settings;
 
 import commands.Command;
 import commands.CommandBuilder;

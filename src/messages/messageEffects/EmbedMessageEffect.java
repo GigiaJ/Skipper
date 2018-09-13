@@ -1,8 +1,8 @@
 package messages.messageEffects;
 
-import static bot.Bot.settings;
 import static eventInfo.MessageInfo.channel;
 import static eventInfo.MessageInfo.message;
+import static main.Main.settings;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +39,7 @@ public class EmbedMessageEffect extends MessageEffects {
 					toSend = EmbedMessage.embMsg(title, embContent, imageUrl, embAuthor, embAuthorIconUrl, embColor);
 
 					try {
-						InputStream file = new URL(bot.Bot.imageFile.toURI().toURL().toString()).openStream();
+						InputStream file = new URL(main.Main.imageFile.toURI().toURL().toString()).openStream();
 						channel.sendFile(file, "Text.png", toSend).submit();
 					} catch (MalformedURLException e) {
 						e.printStackTrace();

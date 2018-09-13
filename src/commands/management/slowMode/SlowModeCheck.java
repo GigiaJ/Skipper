@@ -77,9 +77,14 @@ public class SlowModeCheck extends Statuses {
 							embContent = embContent.replaceFirst("  ", ", ");
 						}
 						long timeLeft = (affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDuration()) - (Instant.now().getEpochSecond() - affectedUsers.get(i).getGuildsSlowModeIn().get(t).getStart());
-						embContent += guild.getMemberById(affectedUsers.get(i).getUserId()).getAsMention() + ":"
-								+ affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDelay() + "s:"
-								+ timeLeft + "s" + "  ";
+						embContent += guild.getMemberById(affectedUsers.get(i).getUserId()).getEffectiveName() + ":"
+								+ affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDelay() + "s:";
+						if (timeLeft < 0) {
+							embContent +=  "N/A ";
+						}
+						else {
+							embContent += timeLeft + "s" + "  ";
+						}
 					}
 				}
 			}

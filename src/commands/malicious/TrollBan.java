@@ -49,7 +49,7 @@ public class TrollBan {
 
 	public static Command updateCommand(String cmdSign, String adminCmdSign)
 			throws NoSuchMethodException, SecurityException {
-		return new CommandBuilder("tban", cmdSign, adminCmdSign, CommandType.MALICIOUS,
+		return new CommandBuilder("trollban", cmdSign, adminCmdSign, CommandType.MALICIOUS,
 				"sends a user an invite and then kicks them from the server and when they rejoins it restores their nickname and roles. (Requires an invite to already exist on the list of invites.)",
 				"thisCommand (@ Desired User)").addPermissionRequirements(
 						new String[] { Permission.MESSAGE_EMBED_LINKS.getName(), Permission.NICKNAME_MANAGE.getName() })

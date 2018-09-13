@@ -19,8 +19,8 @@ public class ColorSetter {
 	private static Pattern toFind = Pattern.compile("([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})");
 
 	public static Color applyColor() throws Exception {
-		if (bot.Bot.settings.getEmbedColor() != null) {
-			String hex = bot.Bot.settings.getEmbedColor();
+		if (main.Main.settings.getEmbedColor() != null) {
+			String hex = main.Main.settings.getEmbedColor();
 			hexColor = hex;
 			int r = Color.decode(hex).getRed();
 			int g = Color.decode(hex).getGreen();
@@ -74,7 +74,7 @@ public class ColorSetter {
 		embColor = color;
 		embContent = "Color successfully set to" + hex + ".";
 		
-		bot.Bot.settings = bot.Bot.settings.debuild().setEmbedColor(hex).build();
+		main.Main.settings = main.Main.settings.debuild().setEmbedColor(hex).build();
 		}
 		else {
 			embContent = "Invalid color code. Please try again.";

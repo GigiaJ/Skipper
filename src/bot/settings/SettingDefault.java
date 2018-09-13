@@ -1,9 +1,10 @@
 package bot.settings;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.io.IOException;
-import bot.VersionEnum;
+
+import main.VersionEnum;
 
 public class SettingDefault {
 	public static void setSettingDefault() throws IOException {
@@ -25,8 +26,8 @@ public class SettingDefault {
 		builder.setMacros(null);
 		builder.setBannedWordList(null);
 		settings = builder.build();
-		bot.Bot.deleteDirectory(bot.Bot.baseFolder);
-		bot.Bot.checkForFiles();
+		main.StartUp.deleteDirectory(main.Main.baseFolder);
+		main.StartUp.checkForFiles();
 		SettingSaver.saveSettings();
 	}
 }

@@ -1,6 +1,6 @@
 package bot.settings;
 
-import static bot.Bot.settings;
+import static main.Main.settings;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,10 +15,10 @@ import macro.Macros;
 public class SettingSaver implements ISetting {
 
 	public static void saveSettings() {
-		File settingsFile = bot.Bot.settingsFile;
+		File settingsFile = main.Main.settingsFile;
 		try {
-			bot.Bot.settingsFile.delete();
-			bot.Bot.settingsFile.createNewFile();
+			main.Main.settingsFile.delete();
+			main.Main.settingsFile.createNewFile();
 			FileWriter fileWriter = new FileWriter(settingsFile, true);
 			PrintWriter printer = new PrintWriter(fileWriter);
 			printer.print(SETTINGS + SPACE + CURLY_BRACKET_START);

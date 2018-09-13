@@ -1,4 +1,4 @@
-package bot;
+package main;
 
 public enum VersionEnum {
 	VERSION("2.4.6");

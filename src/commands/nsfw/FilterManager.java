@@ -20,8 +20,8 @@ public class FilterManager {
 	static boolean[] filters = new boolean[FILTER_COUNT];
 
 	public static void applySettings() {
-		if (bot.Bot.settings.getNsfwFilters() != null) {
-			filters = bot.Bot.settings.getNsfwFilters();
+		if (main.Main.settings.getNsfwFilters() != null) {
+			filters = main.Main.settings.getNsfwFilters();
 		}
 	}
 
@@ -56,7 +56,7 @@ public class FilterManager {
 			}
 		}
 
-		bot.Bot.settings = bot.Bot.settings.debuild().setNsfwFilters(filters).build();
+		main.Main.settings = main.Main.settings.debuild().setNsfwFilters(filters).build();
 
 		embContent = "Safe: " + Boolean.valueOf(filters[0]) + "\n" + "Questionable: " + Boolean.valueOf(filters[1])
 				+ "\n" + "Explicit: " + Boolean.valueOf(filters[2]);

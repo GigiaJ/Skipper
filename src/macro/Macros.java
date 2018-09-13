@@ -8,8 +8,8 @@ public class Macros {
 	public static ArrayList<Macro> macros = new ArrayList<Macro>();
 
 	public static void applySettings() {
-		if (bot.Bot.settings.getMacros() != null) {
-			macros = bot.Bot.settings.getMacros();
+		if (main.Main.settings.getMacros() != null) {
+			macros = main.Main.settings.getMacros();
 		}
 	}
 

@@ -31,7 +31,7 @@ public class NicknameLockCheck extends Statuses {
 					if (embContent.contains("  ")) {
 						embContent = embContent.replaceFirst("  ", ", ");
 					}
-					embContent += guild.getMemberById(affectedUsers.get(i).getUserId()).getAsMention() + "  ";
+					embContent += guild.getMemberById(affectedUsers.get(i).getUserId()).getEffectiveName() + "  ";
 				}
 			}
 
