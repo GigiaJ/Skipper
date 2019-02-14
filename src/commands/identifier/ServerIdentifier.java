@@ -27,7 +27,7 @@ public class ServerIdentifier {
 			embContent += "**Guild Creation Date**: " + guild.getCreationTime().format(DateTimeFormatter.ISO_DATE)
 					+ "\n";
 			embContent += "**Region**: " + guild.getRegion().getName() + "\n";
-			embContent += "**Users**: " + guild.getMembers().size() + "\n";
+			embContent += "Users**: " + guild.getMembers().size() + "\n";
 			embContent += "**Voice Channels**: " + guild.getVoiceChannels().size() + "\n";
 			embContent += "**Text Channels**: " + guild.getTextChannels().size() + "\n";
 			embContent += "**Roles**: " + guild.getRoles().size() + "\n";

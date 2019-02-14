@@ -14,6 +14,9 @@ public class Setting {
 	protected final boolean autoColorStatus;
 	protected final boolean embedMessageStatus;
 	protected final boolean authorEmbedStatus;
+	protected final boolean reverserStatus;
+	protected final boolean noSpaceStatus;
+	protected final boolean spongeBobChickenCapsStatus;
 	protected final String colorChatColor;
 	protected final String embedColor;
 	protected final String currentFontStyle;
@@ -32,6 +35,9 @@ public class Setting {
 		autoColorStatus = builder.autoColorStatus;
 		embedMessageStatus = builder.embedMessageStatus;
 		authorEmbedStatus = builder.authorEmbedStatus;
+		reverserStatus = builder.reverserStatus;
+		noSpaceStatus = builder.noSpaceStatus;
+		spongeBobChickenCapsStatus = builder.spongeBobChickenCapsStatus;
 		colorChatColor = builder.colorChatColor;
 		embedColor = builder.embedColor;
 		currentFontStyle = builder.currentFontStyle;
@@ -71,6 +77,18 @@ public class Setting {
 		return authorEmbedStatus;
 	}
 
+	public boolean getReverserStatus() {
+		return reverserStatus;
+	}
+	
+	public boolean getNoSpaceStatus() {
+		return noSpaceStatus;
+	}
+	
+	public boolean getSpongebobChickenCapsStatus() {
+		return spongeBobChickenCapsStatus;
+	}
+	
 	public String getColorChatColor() {
 		return colorChatColor;
 	}
@@ -128,4 +146,7 @@ public class Setting {
 	public SettingBuilder debuild() {
 		return new SettingBuilder(this);
 	}
+
+
+
 }

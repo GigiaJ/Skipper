@@ -18,6 +18,7 @@ import bot.settings.SettingEnum;
 import commands.management.manager.GuildStatus;
 import commands.management.manager.MemberStatus;
 import macro.Macro;
+import main.VersionEnum;
 
 public class SettingsLoader implements ISetting {
 	protected static ArrayList<Object> settingsToLoad = new ArrayList<Object>();
@@ -54,6 +55,14 @@ public class SettingsLoader implements ISetting {
 	@SuppressWarnings("unchecked")
 	public static void applySettings() {
 		SettingBuilder builder = new SettingBuilder();
+		if (!settingsToLoad.isEmpty() && !settingsToLoad.get(SettingEnum.VERSION.getValue()).equals(VersionEnum.VERSION)) {
+			try {
+				SettingDefault.setSettingDefault();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if (!settingsToLoad.isEmpty()) {
 			builder.setCurrentVersion((String) settingsToLoad.get(SettingEnum.VERSION.getValue()));
 			builder.setAutoColorStatus(
@@ -64,6 +73,9 @@ public class SettingsLoader implements ISetting {
 					Boolean.valueOf((String) settingsToLoad.get(SettingEnum.EMBEDMESSAGE.getValue())));
 			builder.setAuthorEmbedStatus(
 					Boolean.valueOf((String) settingsToLoad.get(SettingEnum.AUTHOREMBED.getValue())));
+			builder.setReverserStatus(Boolean.valueOf((String) settingsToLoad.get(SettingEnum.REVERSER.getValue())));
+			builder.setNoSpaceStatus(Boolean.valueOf((String) settingsToLoad.get(SettingEnum.NOSPACE.getValue())));
+			builder.setSpongeBobChickenCapStatus(Boolean.valueOf((String) settingsToLoad.get(SettingEnum.SPONGEBOBCAPS.getValue())));
 			builder.setColorChatColor((String) settingsToLoad.get(SettingEnum.CHAT_COLOR.getValue()));
 			builder.setEmbedColor((String) settingsToLoad.get(SettingEnum.EMBED_COLOR.getValue()));
 			builder.setCurrentFontStyle((String) settingsToLoad.get(SettingEnum.FONTSTYLE.getValue()));

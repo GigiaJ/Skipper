@@ -54,7 +54,7 @@ public class ColorSetter {
 		if (toFind.matcher(filterCommandOut).find()) {
 			toFind.matcher(filterCommandOut).reset();
 		String hex = filterCommandOut;
-		hexColor = hex;
+		hexColor = hex.toLowerCase();
 		int r = Color.decode(hex).getRed();
 		int g = Color.decode(hex).getGreen();
 		int b = Color.decode(hex).getBlue();
@@ -72,7 +72,7 @@ public class ColorSetter {
 		v = Float.parseFloat(hsbString.substring(hsbString.lastIndexOf(",") + 1, hsbString.lastIndexOf("]")).trim());
 		color = Color.getHSBColor(h, s, v);
 		embColor = color;
-		embContent = "Color successfully set to" + hex + ".";
+		embContent = "Color successfully set to " + hex + ".";
 		
 		main.Main.settings = main.Main.settings.debuild().setEmbedColor(hex).build();
 		}

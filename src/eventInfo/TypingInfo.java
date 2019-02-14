@@ -1,18 +1,15 @@
 package eventInfo;
 
-import java.util.concurrent.ExecutionException;
-
-import handler.CommandHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.user.UserTypingEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-public class MessageInfo extends ListenerAdapter {
+public class TypingInfo extends ListenerAdapter {
 
 	public static MessageChannel channel = null;
 	public static Message message = null;
@@ -25,31 +22,23 @@ public class MessageInfo extends ListenerAdapter {
 	public static ChannelType channelType = null;
 
 	@Override
-	public void onMessageReceived(MessageReceivedEvent event) throws NullPointerException {
+	public void onUserTyping(UserTypingEvent event) throws NullPointerException {
 		try {
-			author = event.getAuthor();
+			author = event.getUser();
 			botUser = event.getJDA().getSelfUser();
-			guild = event.getGuild();
-			userIcon = event.getAuthor().getAvatarUrl();
-			authorName = event.getAuthor().getName();
-			jda = event.getJDA();
-			message = event.getMessage();
-			channel = event.getChannel();
-			channelType = event.getChannelType();
-			//Begins to handle the event
-			CommandHandler.handler();
+			if (author.equals(botUser)) {
+				guild = event.getGuild();
+				userIcon = event.getUser().getAvatarUrl();
+				authorName = event.getUser().getName();
+				jda = event.getJDA();
+				channel = event.getChannel();
+			}
 		} catch (
 		NullPointerException ignore) {	
 			// ignore is a message that has been deleted and the library being used has no
 			// method of acting upon the deleted message in order to handle this exception
 			// Any attempt to handle this would constantly be invoked upon message send or
 			// receive
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

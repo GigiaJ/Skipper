@@ -8,11 +8,11 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.MessageChannel;
 
 public class EnforceSlowModes extends Statuses {
-	
+
 	public static boolean activeCommand() {
 		if (enforceSlowMode == true) {
 			if (hasSlowMode() == false) {
-					applySlowMode();
+				applySlowMode();
 			} else {
 				return true;
 			}

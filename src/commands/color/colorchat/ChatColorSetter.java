@@ -54,7 +54,7 @@ public class ChatColorSetter {
 		if (toFind.matcher(filterCommandOut).find()) {
 			toFind.matcher(filterCommandOut).reset();
 			String hex = filterCommandOut;
-			hexColor = hex;
+			hexColor = hex.toLowerCase();
 			int r = Color.decode(hex).getRed();
 			int g = Color.decode(hex).getGreen();
 			int b = Color.decode(hex).getBlue();

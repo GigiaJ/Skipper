@@ -46,6 +46,15 @@ public class CommandUpdater extends CommandList {
 		
 		cmdViewSettings = commands.general.SettingsViewer.updateCommand(cmdSign, adminCmdSign);
 		listOfCommands.add(cmdViewSettings);
+		
+		cmdReverser = commands.general.Reverser.updateCommand(cmdSign, adminCmdSign);
+		listOfCommands.add(cmdReverser);
+		
+		cmdNoSpace = commands.general.NoSpace.updateCommand(cmdSign, adminCmdSign);
+		listOfCommands.add(cmdNoSpace);
+		
+		cmdSpongeBobChickenCaps = commands.general.SpongeBobChickenCaps.updateCommand(cmdSign, adminCmdSign);
+		listOfCommands.add(cmdSpongeBobChickenCaps);
 
 //		 Color commands
 		cmdAutoColor = commands.color.AutoColor.updateCommand(cmdSign, adminCmdSign);

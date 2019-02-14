@@ -12,7 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class StartUp extends Main {
-	protected static void startUp() throws IOException {
+	
+		
+	protected static void startUp() throws IOException {		
 		String finalPath = "";
 		if (OSCheck.isWindows()) {
 			Path thisFile = Paths.get("this").toAbsolutePath();
@@ -78,7 +80,7 @@ public class StartUp extends Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+}
 
 	public static void checkForFiles() throws IOException {
 		if (!(baseFolder.exists())) {

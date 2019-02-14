@@ -23,7 +23,8 @@ public class BannedWordListRemove extends BannedWordList {
 		if (rawMessageContent.startsWith(cmdBWLRemove.getCommand())
 				&& (!(rawMessageContent.startsWith(cmdBWLRemoveAll.getCommand())))) {
 			String filterCommandOut = rawMessageContent.replaceAll(cmdBWLRemove.getCommand() + " ", "");
-
+			filterCommandOut = messages.StringDecrypter.decrypt(filterCommandOut);
+			
 			if (BWL.contains(filterCommandOut)) {
 				BWL.remove(filterCommandOut);
 				embContent = filterCommandOut + " has been removed from the list.";

@@ -15,6 +15,7 @@ public class EmbedMessage {
 			MessageEmbed embBuild = emb.setTitle(title).setDescription(embContent).setColor(embColor).setImage(imageUrl)
 					.setAuthor(embName, null, embIconUrl).build();
 			Message embedMessage = new MessageBuilder().setContent("ㅤ").setEmbed(embBuild).build();
+			EmbedData.resetEmbedData();
 			return embedMessage;
 		} catch (IllegalStateException ignore) {
 			// JDA issue, can't resolve
