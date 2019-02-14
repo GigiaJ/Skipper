@@ -40,15 +40,12 @@ public class BannedWordListAdd extends BannedWordList {
 					embContent = "Please don't try to ban commands.";
 					return EmbedMessage.embMsg(title, embContent, imageUrl, embAuthor, embAuthorIconUrl, embColor);
 
-				} else {
-					// banWordsList = new FileWriter(bwlFile, true);
-					// PrintWriter printer = new PrintWriter(banWordsList);
+				} else {		
 					for (int i = 0; i < filterCommandOut.split(",").length; i++) {
 						BWL.add(filterCommandOut.split(",")[i]);
 					}
 					embContent = filterCommandOut + " disabled to re-enable use the command "
 							+ cmdBWLRemove.getCommand();
-					// printer.close();
 					return EmbedMessage.embMsg(title, embContent, imageUrl, embAuthor, embAuthorIconUrl, embColor);
 				}
 			} else {

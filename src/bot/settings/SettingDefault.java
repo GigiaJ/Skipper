@@ -13,7 +13,10 @@ public class SettingDefault {
 		builder.setAutoColorStatus(false);
 		builder.setColorChatStatus(false);
 		builder.setEmbedMessageStatus(false);
-		builder.setAuthorEmbedStatus(false);		
+		builder.setAuthorEmbedStatus(false);	
+		builder.setReverserStatus(false);
+		builder.setNoSpaceStatus(false);
+		builder.setSpongeBobChickenCapStatus(false);
 		builder.setColorChatColor("#ff0000");
 		builder.setEmbedColor("#ff0000");
 		builder.setCurrentFontStyle("Whitney");

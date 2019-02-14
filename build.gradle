@@ -21,12 +21,20 @@ dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:21.0'
-	compile 'net.dv8tion:JDA:3.7.1_418'
+	// compile 'net.dv8tion:JDA:3.8.0_424'
 	compile 'org.apache.commons:commons-collections4:4.1'
 	compile 'org.apache.commons:commons-lang3:3.5'
     compile 'com.neovisionaries:nv-websocket-client:2.2'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
 	compile 'com.squareup.okhttp3:okhttp:3.8.1'
     testImplementation 'junit:junit:4.12'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.11.1'
+	compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+	compile group: 'org.slf4j', name:'slf4j-simple', version: '1.7.2'
+	compile "com.teamdev.jxbrowser:jxbrowser-cross-platform:${jxBrowserVersion}"
+	// jsoup HTML parser library @ https://jsoup.org/
+	compile 'org.jsoup:jsoup:1.11.3'
 }
 

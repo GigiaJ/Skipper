@@ -294,7 +294,9 @@ public class ColorChatImageCreator {
 			HashMap<Integer, Integer> emojiLength = new HashMap<Integer, Integer>();
 			Matcher match = emojiPos.matcher(emojiCheck);
 			if (match.find()) {
-				EmojiFinder.emojiUrl();
+				if (EmojiFinder.emojiNames.isEmpty()) {
+					EmojiFinder.emojiUrl(null);
+				}
 			}
 			match.reset();
 			while (match.find()) {
@@ -312,7 +314,7 @@ public class ColorChatImageCreator {
 				}
 				w = w + 1;
 			}
-
+			EmojiFinder.emojiUrl(null);
 			String finalString = emojiCheck.toString().replaceAll("!#&", "    ");
 
 			AttributedString messageAS = new AttributedString(finalString);

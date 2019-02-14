@@ -27,6 +27,9 @@ public class SettingSaver implements ISetting {
 			printer.print(Boolean.toString(settings.getColorChatStatus()) + COMMA);
 			printer.print(Boolean.toString(settings.getEmbedMessageStatus()) + COMMA);
 			printer.print(Boolean.toString(settings.getAuthorEmbedStatus()) + COMMA);
+			printer.print(Boolean.toString(settings.getReverserStatus()) + COMMA);
+			printer.print(Boolean.toString(settings.getNoSpaceStatus()) + COMMA);
+			printer.print(Boolean.toString(settings.getSpongebobChickenCapsStatus()) + COMMA);
 			printer.print(settings.getColorChatColor() + COMMA);
 			printer.print(settings.getEmbedColor() + COMMA);
 			printer.print(settings.getCurrentFontStyle() + COMMA);

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CommandList {
 	public static Command
 			// General
-			cmdPrefixChange = null, cmdQuoter = null, cmdClose = null, cmdLink = null, cmdViewSettings = null,
+			cmdPrefixChange = null, cmdQuoter = null, cmdClose = null, cmdLink = null, cmdViewSettings = null, cmdReverser = null, cmdNoSpace = null, cmdSpongeBobChickenCaps = null,
 			// Help
 			cmdNext = null, cmdBack = null, cmdHelp = null,
 			// EmbedMessages

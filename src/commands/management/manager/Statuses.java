@@ -166,7 +166,7 @@ public class Statuses {
 			for (int t = 0; t < affectedUsers.get(i).getGuildsSlowModeIn().size(); t++) {
 				long checkDuration = (affectedUsers.get(i).getGuildsSlowModeIn().get(t).getStart()
 						+ affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDuration());
-				if (Instant.now().getEpochSecond() < checkDuration) {
+				if (Instant.now().getEpochSecond() < checkDuration || affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDuration() == -1) {
 					MemberStatus memberToSlowMode = affectedUsers.get(i);
 					affectedUsers.remove(i);
 					String memberGuildId = memberToSlowMode.getGuildsSlowModeIn().get(t).getGuildId();
@@ -182,8 +182,7 @@ public class Statuses {
 					Thread thread = new Thread(slowModeThread);
 					thread.start();
 				} else {
-					if (!(affectedUsers.get(i).getGuildsSlowModeIn().get(t).getDuration() < 0))
-						affectedUsers.get(i).getGuildsSlowModeIn().remove(t);
+					affectedUsers.get(i).getGuildsSlowModeIn().remove(t);
 					t = 0;
 				}
 			}

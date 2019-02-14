@@ -63,7 +63,7 @@ public class SlowModeGuild extends Statuses {
 
 	public static Command updateCommand(String cmdSign, String adminCmdSign) throws NoSuchMethodException, SecurityException {
 		return new CommandBuilder("slowmode guild", cmdSign, adminCmdSign, CommandType.MANAGER,
-				"slows down chat for a guild.", "thisCommand guild").addFirstExample("thisCommand guild")
+				"slows down chat for a guild.", "thisCommand").addFirstExample("thisCommand")
 						.addPermissionRequirements(new String[] { Permission.MANAGE_CHANNEL.getName(),
 								Permission.MESSAGE_MANAGE.getName(), Permission.MESSAGE_HISTORY.getName() })
 						.addMethod(SlowModeGuild.class.getMethod("slowModeGuild")).build();

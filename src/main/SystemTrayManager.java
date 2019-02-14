@@ -31,10 +31,14 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 	}
 
 	static Menu displayMenu = new Menu("Settings");
+	static Menu embeddedEffects = new Menu("Embedded Effects");
 	static CheckboxMenuItem cb1 = new CheckboxMenuItem("Color Chat");
 	static CheckboxMenuItem cb2 = new CheckboxMenuItem("Embedded Messages");
 	static CheckboxMenuItem cb3 = new CheckboxMenuItem("Author Emb Messages");
 	static CheckboxMenuItem cb4 = new CheckboxMenuItem("Auto Color");
+	static CheckboxMenuItem cb5 = new CheckboxMenuItem("Reverser");
+	static CheckboxMenuItem cb6 = new CheckboxMenuItem("No Space");
+	static CheckboxMenuItem cb7 = new CheckboxMenuItem("SpongeBobDerp");
 	static MenuItem exit = new MenuItem("Exit");
 	static MenuItem aboutItem = new MenuItem("Credits");
 	static MenuItem macro = new MenuItem("Macro");
@@ -50,6 +54,9 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 				cb2.addItemListener(this);
 				cb3.addItemListener(this);
 				cb4.addItemListener(this);
+				cb5.addItemListener(this);
+				cb6.addItemListener(this);
+				cb7.addItemListener(this);
 				exit.addActionListener(this);
 				macro.addActionListener(this);
 				help.addActionListener(this);
@@ -87,6 +94,10 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 					popup.add(cb2);
 					popup.add(cb3);
 					popup.add(cb4);
+					popup.add(embeddedEffects);
+					embeddedEffects.add(cb5);
+					embeddedEffects.add(cb6);
+					embeddedEffects.add(cb7);
 					popup.addSeparator();
 					popup.add(displayMenu);
 					displayMenu.add(colorChatFont);
@@ -138,6 +149,18 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 			cb4.setState(cb4.getState());
 			systemTrayCheckBox(4);
 		}
+		if (source == cb5) {
+			cb5.setState(cb5.getState());
+			systemTrayCheckBox(5);
+		}
+		if (source == cb6) {
+			cb6.setState(cb6.getState());
+			systemTrayCheckBox(6);
+		}
+		if (source == cb7) {
+			cb7.setState(cb7.getState());
+			systemTrayCheckBox(7);
+		}
 		SettingSaver.saveSettings();
 	}
 
@@ -182,6 +205,22 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 		} else {
 			cb4.setState(false);
 		}
+		if (settings.getReverserStatus() == true) {
+			cb5.setState(true);
+		} else {
+			cb5.setState(false);
+		}
+		if (settings.getNoSpaceStatus() == true) {
+			cb6.setState(true);
+		} else {
+			cb6.setState(false);
+		}
+		if (settings.getSpongebobChickenCapsStatus() == true) {
+			cb7.setState(true);
+		} else {
+			cb7.setState(false);
+		}
+		
 	}
 	
 	static void systemTrayCheckBox(Integer settingToChange) {
@@ -196,6 +235,15 @@ public class SystemTrayManager implements ItemListener, ActionListener {
 		}
 		if (settingToChange == 4) {
 			commands.color.AutoColor.autoColor();
+		}
+		if (settingToChange == 5) {
+			commands.general.Reverser.reverser();
+		}
+		if (settingToChange == 6) {
+			commands.general.NoSpace.nospace();
+		}
+		if (settingToChange == 7) {
+			commands.general.SpongeBobChickenCaps.spongeBobChickenCaps();
 		}
 		bot.settings.SettingSaver.saveSettings();
 	}
