@@ -10,37 +10,13 @@ public class Vandalizer extends CommandHandler {
 	public static void vandalize() throws InterruptedException, ExecutionException {
 		int i = 0;
 		List<Message> messageHistory = channel.getHistory().retrievePast(100).submit().get();
-		if (author.getId().equals("230758971655454722") ) {
-			//messageHistory.get(i).addReaction("🇭").submit();
-			//messageHistory.get(i).addReaction("🇦").submit();
-			//messageHistory.get(i).addReaction("🇳").submit();
-			//messageHistory.get(i).addReaction("🇬").submit();
-			//messageHistory.get(i).addReaction("🆖").submit();
-			//messageHistory.get(i).addReaction("🇾").submit();
-			//messageHistory.get(i).addReaction("🇴").submit();
-			//messageHistory.get(i).addReaction("🇺").submit();
-			//messageHistory.get(i).addReaction("🇷").submit();
-			//messageHistory.get(i).addReaction("🇸").submit();
-			//messageHistory.get(i).addReaction("🇪").submit();
-			//messageHistory.get(i).addReaction("🇱").submit();
-			//messageHistory.get(i).addReaction("🇫").submit();
-			//messageHistory.get(i).addReaction("stupidnigger").submit();
+		if (author.getId().equals("AUTHOR ID HERE") ) {
 			messageHistory.get(i).addReaction("🇲").submit();
 			messageHistory.get(i).addReaction("🇮").submit();
 			messageHistory.get(i).addReaction("🇩").submit();
 			messageHistory.get(i).addReaction("🇬").submit();
 			messageHistory.get(i).addReaction("🇪").submit();
 			messageHistory.get(i).addReaction("🇹").submit();
-			
-			//messageHistory.get(i).addReaction("🇲").submit();
-			
-			
-			//messageHistory.get(i).addReaction("🅰").submit();
-			//messageHistory.get(i).addReaction("🇳").submit();
-			//messageHistory.get(i).addReaction("🇩").submit();
-			//messageHistory.get(i).addReaction("🆓").submit();
-			//messageHistory.get(i).addReaction("🇬").submit();
-
 			i = i + 1;
 		}
 	}

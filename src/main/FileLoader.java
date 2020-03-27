@@ -11,26 +11,33 @@ import commands.nsfw.FilterManager;
 import macro.Macros;
 
 public class FileLoader {
-	protected static void loadFiles() throws Exception {
-		SettingsLoader.loadSettings();
-		Statuses.applySettings();
-		Macros.applySettings();
-		FilterManager.applySettings();
-		BannedWordList.applySettings();
-		PrefixChange.loadPrefixes();
-		CommandUpdater.commands();
-		try {
-			ColorSetter.applyColor();
-		} catch (Exception e) {
-			System.out.println("Color failed to load");
-			e.printStackTrace();
-		}
-		try {
-			ChatColorSetter.applyColor();
-		} catch (Exception e) {
-			System.out.println("Color failed to load");
-			e.printStackTrace();
-		}
-		SystemTrayManager.executeTray(true);
-	}
+    public FileLoader() {
+    }
+
+    protected static void loadFiles() throws Exception {
+        SettingsLoader.loadSettings();
+        Statuses.applySettings();
+        Macros.applySettings();
+        FilterManager.applySettings();
+        BannedWordList.applySettings();
+        PrefixChange.loadPrefixes();
+        CommandUpdater.commands();
+        Main.settings = Main.settings.debuild().setCurrentVersion(VersionEnum.VERSION.getVersion()).build();
+
+        try {
+            ColorSetter.applyColor();
+        } catch (Exception e) {
+            System.out.println("Color failed to load");
+            e.printStackTrace();
+        }
+
+        try {
+            ChatColorSetter.applyColor();
+        } catch (Exception e) {
+            System.out.println("Color failed to load");
+            e.printStackTrace();
+        }
+
+        SystemTrayManager.executeTray(true);
+    }
 }
