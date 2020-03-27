@@ -1,2 +1,4 @@
 # Skipper
-Will hopefully add more info here soon
+Project is defunct until further notice.
+
+Will attempt to make usable at a later date.
